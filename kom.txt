@@ -1,1 +1,1 @@
-TEST SYSTEMU
+Na tablicach będzie wyświetlana informacja pasażeeska.
