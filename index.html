@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRKom</title>
+    <title>TramSys API</title>
 </head>
 <body>
     <h2>Wpisz komunikat w pole poniżej</h2>
@@ -13,11 +13,23 @@
     <script>
         function saveToFile() {
             const text = document.getElementById('textInput').value;
-            const blob = new Blob([text], { type: 'text/plain' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'kom.txt';
-            link.click();
+
+            const formData = new FormData();
+            formData.append('text', text);
+
+            fetch('save_to_file.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                alert('Plik został zapisany');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Błąd podczas zapisywania pliku');
+            });
         }
     </script>
 </body>
