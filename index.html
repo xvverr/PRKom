@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRKom</title>
+</head>
+<body>
+    <h2>Wpisz komunikat w pole poniżej</h2>
+    <input type="text" id="textInput" placeholder="Komunikat">
+    <button onclick="saveToFile()">Ustaw</button>
+
+    <script>
+        function saveToFile() {
+            const text = document.getElementById('textInput').value;
+            const blob = new Blob([text], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'kom.txt';
+            link.click();
+        }
+    </script>
+</body>
+</html>
